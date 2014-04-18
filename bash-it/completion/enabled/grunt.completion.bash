@@ -1,0 +1,1 @@
+../available/grunt.completion.bash

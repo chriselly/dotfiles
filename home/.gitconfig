@@ -1,0 +1,45 @@
+[color "branch"]
+  current = bold cyan
+[color]
+  ui = true
+[alias]
+  pr = !hub pull-request -b $1 -h `git config --get remote.origin.url | sed 's/git@github.com://' | sed 's/\\/.*git/:/'``git symbolic-ref --short HEAD`
+  create-branch = !sh -c 'git push origin HEAD:refs/heads/$1 && git fetch origin && git branch --track $1 origin/$1 && cd . && git checkout $1' -
+  merge-dev-branch = !git checkout dev && git merge @{-1}
+  delete-branch = !sh -c 'git push origin :refs/heads/$1 && git remote prune origin && git branch -D $1' -
+  hist = log --pretty=oneline --graph --date=short --decorate --abbrev-commit
+  fixcase = git mv $1 $1.new && git mv $1.new $2
+  switch = !legit switch \"$@\"
+  branches = !legit branches
+  sprout = !legit sprout \"$@\"
+  unpublish = !legit unpublish \"$@\"
+  harvest = !legit harvest \"$@\"
+  sync = !legit sync \"$@\"
+  publish = !legit publish \"$@\"
+  graft = !legit graft \"$@\"
+[core]
+  editor = $GIT_EDITOR
+  excludesfile = ~/.gitignore
+[media]
+  auto-download = false
+[difftool "Kaleidoscope"]
+  cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[diff]
+  tool = Kaleidoscope
+[difftool]
+  prompt = false
+[mergetool "Kaleidoscope"]
+  cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+  trustExitCode = true
+[mergetool]
+  prompt = false
+[merge]
+  tool = Kaleidoscope
+[git-bigfile]
+  transport = sftp
+[filter "bigfile"]
+  clean = git-bigfile filter-clean
+  smudge = git-bigfile filter-smudge
+[filter "media"]
+  clean = git-media-clean %f
+  smudge = git-media-smudge %f
