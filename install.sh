@@ -25,7 +25,7 @@ function add_bashit_completion {
 function add_bashit_alias {
   echo "Enabling $1.alias"
   [ ! -d "$BASH_IT/aliases/enabled" ] && mkdir "$BASH_IT/aliases/enabled"
-  ln -fs "$BASH_IT/aliases/available/$1.alias.bash" "$BASH_IT/aliases/enabled/$1.alias.bash"
+  ln -fs "$BASH_IT/aliases/available/$1.aliases.bash" "$BASH_IT/aliases/enabled/$1.aliases.bash"
 }
 
 function add_bashit_plugin {
@@ -35,7 +35,7 @@ function add_bashit_plugin {
 }
 
 function copy_plugins() {
-  ln -fs $DOTFILES_PATH/customs/custom.plugins.bash $BASH_IT/custom/custom.plugins.bash
+  ln -fs $DOTFILES_PATH/customs/custom.plugin.bash $BASH_IT/custom/custom.plugin.bash
   echo ""
   echo "To get a full list of custom commands, use 'bash-it help plugins'"
   echo ""
@@ -45,8 +45,8 @@ function copy_plugins() {
   echo -n "Enter the full path to yours: "
   read devpath
   if [ $devpath ] && [ -e $devpath ]; then
-    cp $DOTFILES_PATH/customs/set_devfolder.bash $BASH_IT/custom/set_devfolder.bash
-    printf '\n# Set default folder for development repos\nexport REPOS_FOLDER='$devpath'\nsetup_pretty_terminal' >> $BASH_IT/custom/set_devfolder.bash
+    cp $DOTFILES_PATH/customs/set_devfolder.environment.bash $BASH_IT/custom/set_devfolder.environment.bash
+    printf '\n# Set default folder for development repos\nexport REPOS_FOLDER='$devpath'\nsetup_pretty_terminal' >> $BASH_IT/custom/set_devfolder.environment.bash
   fi
 }
 
@@ -146,9 +146,9 @@ done
 echo -n "Enter the full path to your development editor (/usr/bin/subl): "
 read deveditor
 if [ $deveditor ]; then
-  printf '\n# Set development editors\nexport EDITOR='$deveditor'\nexport GIT_EDITOR='$deveditor'' > $BASH_IT/custom/set_deveditor.bash
+  printf '\n# Set development editors\nexport EDITOR='$deveditor'\nexport GIT_EDITOR='$deveditor'' > $BASH_IT/custom/set_deveditor.environment.bash
 else
-  printf '\n# Set development editors\nexport EDITOR="/usr/bin/subl"\nexport GIT_EDITOR="/usr/bin/subl -w"' > $BASH_IT/custom/set_deveditor.bash
+  printf '\n# Set development editors\nexport EDITOR="/usr/bin/subl"\nexport GIT_EDITOR="/usr/bin/subl -w"' > $BASH_IT/custom/set_deveditor.environment.bash
 fi
 
 echo ""
