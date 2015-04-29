@@ -25,7 +25,7 @@ function lowernames {
 function grepmatch { 
   about 'finds matching files in all directories that contain the specified (case insensitive) string'
   group 'custom'
-  grep -RInils $@ .; 
+  grep -RInils "${@}" .; 
 }
 
 alias findgrep='grepmatch'
@@ -72,4 +72,11 @@ function oldpush {
   about 'old push update on our staging server'
   group 'custom'
   ssh stag 'cd update; screen -d -m bash -c "./push.sh '$@'"'
+}
+
+function devserve {
+  about 'run dev server for testing'
+  group 'custom'
+  cd $REPOS_FOLDER/devserve
+  npm start
 }
