@@ -41,3 +41,8 @@ export PATH="/usr/local/heroku/bin:$PATH"
 ### Added by homeshick
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
+
+export TMUX_POWERLINE_SEG_WEATHER_LOCATION="2503863"
+export TMUX_POWERLINE_SEG_WEATHER_GREP="/usr/local/Cellar/grep/2.18/bin/ggrep"
+
+if tmux has; then tmux attach -d; else tmux new; fi

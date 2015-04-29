@@ -120,3 +120,5 @@ else \
   # @2 - Prompt when not in GIT repo
   echo "'$Color_Off$White$On_Black$SEGMENT_SEPARATOR$BIWhite$On_White$On_Black' '$PathShort' '$Color_Off$Black$SEGMENT_SEPARATOR$Color_Off' "; \
 fi)'
+
+# export PROMPT=$Color_Off$White$On_Black$BIWhite$On_White$On_Black' '$PathShort' '$Color_Off$Black$SEGMENT_SEPARATOR$Color_Off' '
