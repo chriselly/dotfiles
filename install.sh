@@ -57,6 +57,7 @@ function copy_theme {
 
 function install_defaults {
   add_bashit_alias "general"
+  add_bashit_alias "osx"
   add_bashit_completion "bash-it"
   add_bashit_completion "brew"
   add_bashit_completion "git"
