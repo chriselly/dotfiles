@@ -19,6 +19,13 @@ fi
 
 ssh-keygen -t rsa -C $gitemail -f $HOME/.ssh/id_rsa
 
+if [ ! -d "$HOME/.config" ]; then
+	mkdir $HOME/.config
+	if [ ! -d "$HOME/.config/git" ]; then
+		mkdir $HOME/.config/git
+	fi
+fi
+
 git config -f $HOME/.config/git/config user.name $gituser
 git config -f $HOME/.config/git/config user.email $gitemail
 
